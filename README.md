@@ -25,9 +25,9 @@ This project aims to provide a clear and concise implementation of the basic mat
 
 Linear regression is a method used to model the relationship between a dependent variable \( y \) and one or more independent variables \( X \). In simple linear regression, the relationship is modeled as:
 
-\[
+\$
 y = \theta_0 + \theta_1 X
-\]
+\$
 
 Where:
 - \( y \) is the predicted output,
