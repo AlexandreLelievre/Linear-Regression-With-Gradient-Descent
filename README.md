@@ -11,7 +11,7 @@ This project implements a **Python class** for **linear regression** using **gra
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [License](#license)
+
 
 ## Overview
 
@@ -23,56 +23,56 @@ This project aims to provide a clear and concise implementation of the basic mat
 
 ### Linear Regression
 
-Linear regression is a method used to model the relationship between a dependent variable \( y \) and one or more independent variables \( X \). In simple linear regression, the relationship is modeled as:
+Linear regression is a method used to model the relationship between a dependent variable $` y `$ and one or more independent variables $` X `$. In simple linear regression, the relationship is modeled as:
 
-\$
+$`
 y = \theta_0 + \theta_1 X
-\$
+`$
 
 Where:
-- \( y \) is the predicted output,
-- \( \theta_0 \) is the intercept,
-- \( \theta_1 \) is the slope (or coefficient) of the independent variable \( X \).
+- $`y`$ is the predicted output,
+- $`\theta_0`$ is the intercept,
+- $`\theta_1`$ is the slope (or coefficient) of the independent variable $` X `$.
 
-The goal is to find the parameters \( \theta_0 \) and \( \theta_1 \) that minimize the difference between the predicted \( y \) and the actual target values.
+The goal is to find the parameters $` \theta_0 `$ and $` \theta_1 `$ that minimize the difference between the predicted $` y `$ and the actual target values.
 
 ### Gradient Descent
 
 Gradient descent is an optimization algorithm used to minimize the cost function. The cost function for linear regression (Mean Squared Error) is:
 
-\[
+$`
 J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} \left( h_\theta(X^{(i)}) - y^{(i)} \right)^2
-\]
+`$
 
 Where:
-- \( m \) is the number of training examples,
-- \( h_\theta(X) \) is the prediction (hypothesis) using the current parameters \( \theta \),
-- \( y \) is the actual target value.
+- $` m `$ is the number of training examples,
+- $` h_\theta(X) `$ is the prediction (hypothesis) using the current parameters $` \theta `$,
+- $` y `$ is the actual target value.
 
 Gradient descent works by updating the model parameters in the direction that reduces the cost function:
 
-\[
+$`
 \theta_j = \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}
-\]
+`$
 
 Where:
-- \( \alpha \) is the learning rate (step size),
-- \( \frac{\partial J(\theta)}{\partial \theta_j} \) is the gradient of the cost function with respect to \( \theta_j \).
+- $` \alpha `$ is the learning rate (step size),
+- $` \frac{\partial J(\theta)}{\partial \theta_j} `$ is the gradient of the cost function with respect to $` \theta_j `$.
 
 ### Regularization
 
 To prevent overfitting, regularization techniques are introduced, such as:
 - **L2 regularization (Ridge)**: Adds a penalty proportional to the sum of the squared values of the parameters.
   
-  \[
+  $`
   J(\theta) = \text{MSE} + \lambda \sum_{j=1}^{n} \theta_j^2
-  \]
+  `$
 
 - **L1 regularization (Lasso)**: Adds a penalty proportional to the absolute values of the parameters.
 
-  \[
+  $`
   J(\theta) = \text{MSE} + \lambda \sum_{j=1}^{n} |\theta_j|
-  \]
+  `$
 
 In this implementation, a combination of L1 and L2 regularization is supported using the **l1_ratio** parameter.
 
@@ -90,4 +90,38 @@ To use this project, you need to have **Python 3** installed along with the foll
 
 ```bash
 pip install numpy matplotlib
+```
+
+
+## Usage
+
+Here is an example of how to use the class:
+```python3
+import numpy as np
+import matplotlib.pyplot as plt
+from ModuleReg import LinearReg
+
+# Generate some synthetic data
+X = 2 * np.random.rand(100, 1)
+y = 4 + 3 * X + np.random.randn(100, 1)
+
+# Initialize and fit the model
+model = LinearReg(X, y)
+model.fit()
+
+# Make predictions
+predictions = model.predict(X)
+
+# Plot the results
+plt.scatter(X, y, color="blue", label="Actual data")
+plt.plot(X, predictions, color="red", label="Predicted data")
+plt.legend()
+plt.show()
+
+
+# Plot cost function evolution
+model.plot()
+plt.show()
+```
+
 
